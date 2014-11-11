@@ -1,5 +1,6 @@
 <?php
 
+// Example page
 class Hangman {
 
     private $page_var = null;
@@ -11,11 +12,7 @@ class Hangman {
     private $regex = '';
     private $words_list = array();
 
-    /*
-     *
-     * Initial visit
-     *
-     */
+    // GET /hangman
     public function index($page = "hangman") {
 
         if (isset($_GET['test'])) {
@@ -34,11 +31,7 @@ class Hangman {
 
     }
 
-    /*
-     *
-     * Solves hangman word by word
-     *
-     */
+    // POST /hangman
     public function solve($page = "hangman") {
 
         if (isset($_GET['test'])) {
@@ -47,7 +40,7 @@ class Hangman {
 
         // If word is not blank, solve hangman
         if (isset($_POST['word']) && !empty($_POST['word'])) {
-            $this->word = $_POST['word'];
+            $this->word = trim($_POST['word']);
 
             // Check for valid word
             if (!preg_match('/^[a-zA-Z\?]+$/', $this->word)) {
@@ -68,7 +61,7 @@ class Hangman {
 
                 $this->next_word = str_replace('?', '_', $this->next_word);
 
-                $file_words = file_get_contents('./model/words.txt');
+                $file_words = file_get_contents('../model/words.txt');
                 $words = preg_match_all($this->regex, $file_words, $matches, PREG_SET_ORDER);
                 if ($words != FALSE) {
                     foreach ($matches as $word) {

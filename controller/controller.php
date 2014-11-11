@@ -22,8 +22,8 @@ class Controller {
 
     // Create Model instance in this->model
     public function loadModel($mdl) {
-        require "./model/model.php";
-        require "./model/{$mdl}.php";
+        require "../model/model.php";
+        require "../model/{$mdl}.php";
         $this->model = new $mdl($this->dbh);
 
     }

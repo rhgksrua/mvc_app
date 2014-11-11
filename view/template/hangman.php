@@ -7,7 +7,7 @@
         <h1>Hangman Solver</h1>
         <h2><?= $next ?></h2>
         <p><?php echo isset($regex) ? $regex : '' ?>
-        <form action='/php/mvc_app/hangman?test' method='post'>
+        <form action='/hangman?test' method='post'>
             <p>
                 <label for='word'>Enter word with ? as blanks</label>
                 <br />
