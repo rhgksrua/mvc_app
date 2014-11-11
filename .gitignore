@@ -1,1 +1,4 @@
 *.log
+access.log
+error.log
+rewrite.log
