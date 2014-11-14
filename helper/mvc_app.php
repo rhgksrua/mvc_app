@@ -24,6 +24,7 @@ class App {
     public function __construct() {
 
         // routing class
+        // Dependency on Router class
         $this->router = new Router();
 
         zzz("Routes", $this->router->showURL());
@@ -34,18 +35,6 @@ class App {
          * class Router redirects based on routes
          */ 
 
-        // returns page based on request URI
-        //$request_method = $_SERVER['REQUEST_METHOD'];
-        //echo $request_method;
-        //if ($request_method == 'GET') {
-        //    $controller_mod = 'get_controller';
-        //} else if ($request_method == 'POST') {
-        //    $controller_mod = 'post_controller';
-        //}
-        //
-        //
-        // DELETE
-
         $this->page = $this->router->grab_controller();
         $this->method = $this->router->get_method();
 
@@ -53,6 +42,7 @@ class App {
         if (file_exists($path)) {
             require_once $path;
             // Class contructs are case insensitive.
+            // Dependency on controller class
             $this->controller = new $this->page;
             $this->controller->{$this->method}();
         } else {
