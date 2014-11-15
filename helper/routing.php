@@ -3,7 +3,7 @@
 
 class Router {
 
-    static public $sites = array();
+    static private $sites = array();
     private $controller = null;
     private $uris = null;
     private $method = null;
@@ -48,16 +48,31 @@ class Router {
             $cont = self::$sites[$request_method][$imploded];
             $cont = explode('@', $cont);
 
-            $this->controller = $cont[0];
-            $this->method = isset($cont[1]) ? $cont[1] : 'index';
+            $this->set_controller($cont[0]);
+            if (isset($cont[1]) && !empty($cont[1])) {
+                $this->set_method($cont[1]);
+            } else {
+                $this->set_method();
+            }
 
             zzz('controller', $this->controller);
             zzz('method', $this->method);
             
 
         } else {
-            echo "<p>uri DOES NOT exist</p>";
+            zzz("<p>uri DOES NOT exist</p>", "");
         }
+    }
+
+    // Controller Setter
+    private function set_controller($cont) {
+        $this->controller = $cont;
+    }
+
+    // Method Setter
+    private function set_method($method = 'index') {
+        $this->method = $method;
+
     }
 
     public function grab_controller() {
@@ -68,29 +83,11 @@ class Router {
         return $this->controller;
     }
 
-    public function post_controller() {
-        return $this->controller;
-    }
-
-    // Returns page
-    public function get_page() {
-        print_r($this->requestURI);
-        if (isset($this->requestURI[0]) && !empty($this->requestURI[0])) {
-            // Returns user request page
-            
-            return $this->controller;
-        } else {
-            // Send to home
-            return 'home';
-        }
-    }
-
     public function get_method() {
         return $this->method;
 
     }
 
-    //static public function __callStatic($uri = '/', $controller = 'home') {
     static public function __callStatic($method, $arg) {
         if (in_array($method, self::$method_types)) {
             self::$sites[$method][$arg[0]] = $arg[1];

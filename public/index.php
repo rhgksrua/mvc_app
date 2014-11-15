@@ -6,8 +6,9 @@ require "../helper/mvc_app.php";
 require "../helper/routing.php";
 require "../helper/config.php";
 
-define('DEBUG', TRUE);
+define('DEBUG', FALSE);
 
-$app = new App();
+//$app = new App();
+$app = startApp();
 
 // END
