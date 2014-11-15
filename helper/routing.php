@@ -75,14 +75,12 @@ class Router {
 
     }
 
-    public function grab_controller() {
-        return $this->controller;
-    }
-
+    // Controller Getter
     public function get_controller() {
         return $this->controller;
     }
 
+    // Method Setter
     public function get_method() {
         return $this->method;
 
@@ -92,7 +90,7 @@ class Router {
         if (in_array($method, self::$method_types)) {
             self::$sites[$method][$arg[0]] = $arg[1];
         } else {
-            echo "request method invalid";
+            throw new Exception('request method in routes.php invalid');
         }
     }
 

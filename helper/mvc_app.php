@@ -21,11 +21,11 @@ class App {
     private $router = null;
 
     // Routing
-    public function __construct() {
+    public function __construct($router) {
 
         // routing class
         // Dependency on Router class
-        $this->router = new Router();
+        $this->router = $router;
 
         zzz("Routes", $this->router->showURL());
 
@@ -40,6 +40,7 @@ class App {
             // Dependency on controller class
             $this->controller = new $this->controllerName;
             $this->controller->{$this->method}();
+            exit();
         } else {
             return View::render($this->page404);
         }
@@ -49,7 +50,9 @@ class App {
 // Factory
 function startApp() {
     zzz('Starting App', '');
-    return new App();
+    $router = new Router();
+    return new App($router);
+
 }
 
 // END

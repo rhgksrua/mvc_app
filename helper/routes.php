@@ -16,4 +16,4 @@ Router::get('/home', 'home');
 Router::get('/hangman', 'hangman');
 Router::post('/hangman', 'hangman@solve');
 
-
+Router::put('/error', 'home');
