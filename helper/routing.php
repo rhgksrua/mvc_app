@@ -90,7 +90,8 @@ class Router {
         if (in_array($method, self::$method_types)) {
             self::$sites[$method][$arg[0]] = $arg[1];
         } else {
-            throw new Exception('request method in routes.php invalid');
+            throw new Exception("request method ( $method ) in routes.php invalid");
+            exit();
         }
     }
 
