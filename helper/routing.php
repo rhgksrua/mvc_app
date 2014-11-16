@@ -76,12 +76,12 @@ class Router {
     }
 
     // Controller Getter
-    public function get_controller() {
+    public function getController() {
         return $this->controller;
     }
 
     // Method Setter
-    public function get_method() {
+    public function getMethod() {
         return $this->method;
 
     }

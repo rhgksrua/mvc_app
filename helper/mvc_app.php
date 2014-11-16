@@ -5,35 +5,35 @@ require_once "../view/view.php";
 class App {
     private $page404 = '404';
     
+    // Controller and its method
     private $controllerName = "home";
     private $method = null;
 
     // File path for controller
     private $path = null;
 
-    // All the required classes
+    // Following var hold instances of its respective class
     private $controller = null;
-
-    // if required
     private $model = null;
-
-    // routes based on request URI
     private $router = null;
 
     // Routing
     public function __construct($router) {
-
         // routing class
         // Dependency on Router class
         $this->router = $router;
-
-        zzz("Routes", $this->router->showURL());
-
-        $this->controllerName= $this->router->get_controller();
-        $this->method = $this->router->get_method();
-
+        $this->controllerName= $this->router->getController();
+        $this->method = $this->router->getMethod();
         $path = __DIR__ . "/../controller/" . $this->controllerName. ".php";
-        zzz('path: ', $path);
+        $this->routeToPath($path);
+    }
+
+    /*
+     *
+     * Creates controller.
+     *
+     */
+    private function routeToPath($path) {
         if (file_exists($path)) {
             require_once $path;
             // Class contructs are case insensitive.
@@ -54,5 +54,6 @@ function startApp() {
     return new App($router);
 
 }
+
 
 // END
