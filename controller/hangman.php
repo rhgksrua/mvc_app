@@ -1,7 +1,7 @@
 <?php
 
 // Example page
-class Hangman {
+class Hangman extends Controller {
 
     private $page_var = null;
     private $name = '';
@@ -27,7 +27,7 @@ class Hangman {
             'error' => $this->error
         );
 
-        return View::render($page, $this->page_var);
+        return $this->view->render($page, $this->page_var);
 
     }
 
@@ -88,7 +88,7 @@ class Hangman {
             $this->page_var['error'] = $this->error;
         } 
         
-        return View::render($page, $this->page_var);
+        return $this->view->render($page, $this->page_var);
     }
 }
 

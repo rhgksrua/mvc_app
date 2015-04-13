@@ -1,14 +1,21 @@
 <?php
 
+require '../view/view.php';
+
 class Controller {
+
 
     // PDO instance
     public $dbh = null;
 
     // model for controller
     public $model = null;
+    protected $view = null;
 
     public function __construct() {
+        $this->view = new View();
+
+
 
     }
 

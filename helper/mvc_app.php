@@ -16,12 +16,15 @@ class App {
     private $controller = null;
     private $model = null;
     private $router = null;
+    private $view = null;
 
     // Routing
-    public function __construct($router) {
+    public function __construct($router, $view) {
         // routing class
         // Dependency on Router class
+        
         $this->router = $router;
+        $this->view = $view;
         $this->controllerName= $this->router->getController();
         $this->method = $this->router->getMethod();
         $path = __DIR__ . "/../controller/" . $this->controllerName. ".php";
@@ -38,11 +41,11 @@ class App {
             require_once $path;
             // Class contructs are case insensitive.
             // Dependency on controller class
-            $this->controller = new $this->controllerName;
+            $this->controller = new $this->controllerName();
             $this->controller->{$this->method}();
             exit();
         } else {
-            return View::render($this->page404);
+            return $this->view->render($this->page404);
         }
     }
 }
@@ -51,7 +54,8 @@ class App {
 function startApp() {
     zzz('Starting App', '');
     $router = new Router();
-    return new App($router);
+    $view = new View();
+    return new App($router, $view);
 
 }
 

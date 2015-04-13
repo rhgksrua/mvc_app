@@ -18,7 +18,7 @@ class Home extends Controller {
         $this->loadModel("HomeModel");
         $this->model->test();
 
-        return View::render($page, $this->page_var);
+        return $this->view->render($page, $this->page_var);
     }
 }
 

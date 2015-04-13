@@ -3,12 +3,12 @@
 
 class Router {
 
-    static private $sites = array();
+    private $sites = array();
     private $controller = null;
     private $uris = null;
     private $method = null;
 
-    static private $method_types = array('get', 'post');
+    private $method_types = array('get', 'post');
 
 
     // Will contain uri without script name
@@ -42,10 +42,10 @@ class Router {
         zzz('$request_method', $request_method);
         
 
-        if (array_key_exists($request_method, self::$sites) && 
-            array_key_exists($imploded, self::$sites[$request_method])) {
+        if (array_key_exists($request_method, $this->sites) && 
+            array_key_exists($imploded, $this->sites[$request_method])) {
 
-            $cont = self::$sites[$request_method][$imploded];
+            $cont = $this->sites[$request_method][$imploded];
             $cont = explode('@', $cont);
 
             $this->set_controller($cont[0]);
@@ -86,9 +86,9 @@ class Router {
 
     }
 
-    static public function __callStatic($method, $arg) {
-        if (in_array($method, self::$method_types)) {
-            self::$sites[$method][$arg[0]] = $arg[1];
+    public function __call($method, $arg) {
+        if (in_array($method, $this->method_types)) {
+            $this->sites[$method][$arg[0]] = $arg[1];
         } else {
             throw new Exception("request method ( $method ) in routes.php invalid");
             exit();
@@ -96,7 +96,7 @@ class Router {
     }
 
     public function showURL() {
-        return self::$sites;
+        return $this->sites;
     }
 
 }

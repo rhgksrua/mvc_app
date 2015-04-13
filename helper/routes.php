@@ -6,15 +6,15 @@
  * 
  */
 
-Router::get('/testpage', 'TestPage');
+$this->get('/testpage', 'TestPage');
 
-Router::get('/controller', 'hangman');
+$this->get('/controller', 'hangman');
 
-Router::get('/', 'home');
-Router::get('/home', 'home');
+$this->get('/', 'home');
+$this->get('/home', 'home');
 
-Router::get('/hangman', 'hangman');
-Router::post('/hangman', 'hangman@solve');
+$this->get('/hangman', 'hangman');
+$this->post('/hangman', 'hangman@solve');
 
 
 // EOF

@@ -6,7 +6,7 @@ class View {
 
     }
 
-    static public function render($template, $data = array()) {
+    public function render($template, $data = array()) {
 
         $path = __DIR__ . '/../view/template/' . $template . '.php';
         if (file_exists($path)) {
