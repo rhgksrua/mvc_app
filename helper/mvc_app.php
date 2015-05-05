@@ -50,14 +50,6 @@ class App {
     }
 }
 
-// Factory
-function startApp() {
-    zzz('Starting App', '');
-    $router = new Router();
-    $view = new View();
-    return new App($router, $view);
-
-}
 
 
 // END

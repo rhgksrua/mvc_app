@@ -1,15 +1,17 @@
 <?php
 
-
+/**
+ *
+ * Pretty URLs
+ *
+ */
 class Router {
 
     private $sites = array();
     private $controller = null;
     private $uris = null;
     private $method = null;
-
     private $method_types = array('get', 'post');
-
 
     // Will contain uri without script name
     private $requestURI = null;
@@ -20,7 +22,6 @@ class Router {
     // Parses URI and sets page
     public function __construct() {
 
-        // Store all uri into self::$sites
         require "routes.php";
 
         // parse request uri
@@ -36,10 +37,8 @@ class Router {
 
         // URI string. ex: /home/hangman
         $imploded = '/' . implode('/', $this->requestURI);
-        zzz('$implode', $imploded);
 
         $request_method = strtolower($_SERVER['REQUEST_METHOD']);
-        zzz('$request_method', $request_method);
         
 
         if (array_key_exists($request_method, $this->sites) && 
@@ -54,14 +53,8 @@ class Router {
             } else {
                 $this->set_method();
             }
-
-            zzz('controller', $this->controller);
-            zzz('method', $this->method);
-            
-
-        } else {
-            zzz("<p>uri DOES NOT exist</p>", "");
         }
+
     }
 
     // Controller Setter
