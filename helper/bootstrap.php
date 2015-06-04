@@ -1,9 +1,9 @@
 <?php
 
-require "../controller/controller.php";
+require "../controller/Controller.php";
 require "../helper/debug.php";
-require "../helper/mvc_app.php";
-require "../helper/routing.php";
+require "../helper/App.php";
+require "../helper/Router.php";
 require "../helper/config.php";
 
 
