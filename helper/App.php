@@ -18,30 +18,37 @@ class App {
     private $router = null;
     private $view = null;
 
-    // Routing
-    public function __construct($router, $view) {
-        // routing class
-        // Dependency on Router class
-        
+    /**
+     * This is where it begins
+     *
+     * @param $router Router
+     * @param $view View
+     * @param $model Model
+     */
+    public function __construct(Router $router, View $view, Model $model) {
         $this->router = $router;
         $this->view = $view;
+        $this->model = $model;
         $this->controllerName= $this->router->getController();
         $this->method = $this->router->getMethod();
         $path = __DIR__ . "/../controller/" . $this->controllerName. ".php";
         $this->routeToPath($path);
     }
 
-    /*
+    /**
+     * Creates controller and invokes required method
+     * 
+     * @param $path string Path to controller directory
      *
-     * Creates controller.
-     *
+     * NOTE: need to rework how controller is being created
      */
     private function routeToPath($path) {
         if (file_exists($path)) {
             require_once $path;
-            // Class contructs are case insensitive.
-            // Dependency on controller class
             $this->controller = new $this->controllerName();
+
+            // Injecting view and model
+            $this->controller->setModelView($this->view, $this->model);
             $this->controller->{$this->method}();
             exit();
         } else {

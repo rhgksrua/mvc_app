@@ -1,3 +1,3 @@
-<p>This is home</p>
+<p>Welcome</p>
 
 <a href="./hangman">hangman</a>

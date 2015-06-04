@@ -1,79 +1,112 @@
-MVC in PHP
 
-Basic implementation of MVC for PHP
+_This is a work in progress_
 
-
-How it works
-
-.htaccess redirects all request to /public/index.php
-/public folder is where all web accessible files are stored.
-
-App Class.
-
-All requests except folders and files in /public are send to /public/index.php
-
-New instance of App is created.
-
-App class is in helper/mvc\_app.php file.
-App contains Router class, which handles all the routes in routes.php.
-
-If an requested URI does not exist, 404 message is shown.
+# MVC in PHP
 
 
+## Basic implementation of MVC for PHP
 
-Router Class.
+### Getting Started
 
-Router Class is in helper/routing.php file.
+There are no dependencies.
 
-static public $sites is an array that holds all the URIs in routes.php.
-When Router Class is created, it gets the request URI and matches URIs from routes.php.
-If matching URI is found, controller class and method is stored.
+run `git clone https://github.com/rhgksrua/mvc_app.git`
 
-Example routes:
+#### Creating a basic website
+---
 
-Controller methods can be set with @.
+##### Create a new file in `/controller` directory
 
-Router::get('/homepage', 'homepage');
+i.e. `/controller/Home.php`
+Example of `Home.php`
+```php
+<?php
 
-www.example.com/homepage will open homepage with method of index.
-(index is the default method)
+class Home extends Controller
+{
+    public function index()
+    {
+        ...stuff inside
+    }
+}
+```
+***
 
-Router::get('/homepage', 'homepage@foobar');
+##### Set your routes in `helper/routes.php`
 
-www.example.com/homepage will open homepage with method of foobar.
+*Only GET and POST methods are implemented*
 
-Router::post('/homepage', 'homepage@postsomething');
+ex.
 
-If request method is post, postsomething method will be called.
+```php
+$this->get('/home', 'Home');
+```
+`Home.php` is where all the logic will reside. `.php` extension is not required.
+Function `index` is the default method that will be run.
+Your own method can be set by
+```php
+$this->get('/home', 'Home@show');
+```
+Home needs a `show` method
 
-Currently only get and post is implemented.
+ex.
+```php
+<?php
+
+class Home extends Controller
+{
+    public function show()
+    {
+        ...stuff inside
+    }
+}
+```
+***
+##### Next, a template needs to be created.
+
+Add a new file to `/view/templates`
+
+i.e.
+
+`/view/tempaltes/home.php`
+
+***
+##### Inside `Home` controller, template needs to be rendered.
+```php
+class Home extends Controller
+{
+    public function show()
+    {
+        return $this->view->render('home');
+    }
+}
+```
+`render()` method takes name of the template as the parameter.
+An optional second parameter can be added to pass variables to the template.
+
+ex.
+```php
+class Home extends Controller
+{
+    public function show()
+    {
+        $arrayOfText = [
+            'hello' => 'world',
+            'foo' => 'bar'
+        ];
+        return $this->view->render('home', $arrayOfText);
+    }
+}
+```
+
+Variables `$hello` and `$foo` is available in the `home.php` template.
+
+
+## TODO
+
+* Add Model
 
 
 
 
 
-Model
-
-models need to extend Model class.
-
-Controllers need to extend Controller class to connect to DB(PDO).
-
-Controller needs to call connectDB() and loadModel(string $model)
-
-loadModel($model) Parameters
-
-model
--Name of you model php file i.e. HomeModel.php
-
-$this->model contains model instance.
-
-call method on $this->model.
-
-i.e. $this->model->method();
-
-
-View Class.
-
-View class handles rendering.  
-
-Template engine is not implemented yet.

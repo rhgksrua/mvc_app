@@ -1,14 +1,16 @@
 <?php
 
 /*
- *
- * Database
- *
+ * Connects to db.
+ * 
+ * @param PDO 
  */
-
 class Model {
 
     public $dbh = null;
+
+    // Holds sql statements
+    private $statements = [];
 
     public function __construct($db) {
         $this->dbh = $db;
@@ -29,20 +31,27 @@ class Model {
 
     }
 
+    /**
+     * Add prepared statements to be executed
+     *
+     * @param string sql statements
+     */
     public function prepare($statments) 
     {
-
+        array_push($this->statements, $statements);
     }
 
     /**
      * Executes statements
      *
      * @param array $options options
+     * @return query
      */
     public function execute($options) 
     {
 
-        return;
+
+        return false;
     }
 
 }

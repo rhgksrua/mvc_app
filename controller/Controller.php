@@ -4,28 +4,32 @@ require '../view/View.php';
 
 class Controller {
 
-
     // PDO instance
     public $dbh = null;
 
     // model for controller
     public $model = null;
-    protected $view = null;
+    public $view = null;
 
+    /**
+     * Base controller
+     * 
+     * @param View used for rendering.
+     */
     public function __construct() {
-        $this->view = new View();
-
-
 
     }
 
-    //  Connect to DB using defined var in config.php
+    public function setModelView(View $view, Model $model) {
+        $this->view = $view;
+        $this->model = $model;
+    }
+
+    // Will be using Model methods to connect to db
+    /*
     public function connectToDB() {
-        $dsn = DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME;
-        zzz('$dsn', $dsn);
-        $this->dbh = new PDO($dsn, DB_USER, DB_PASS);
-
     }
+     */
 
     // Create Model instance in this->model
     public function loadModel($mdl) {
