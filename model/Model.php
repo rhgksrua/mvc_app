@@ -1,9 +1,10 @@
 <?php
 
-/*
+/**
  * Connects to db.
+ *
+ * Create a method and call method from controller.
  * 
- * @param PDO 
  */
 class Model {
 
@@ -12,33 +13,25 @@ class Model {
     // Holds sql statements
     private $statements = [];
 
+    /**
+     * Sets PDO instance
+     *
+     * @param PDO $db
+     */
     public function __construct($db) {
         $this->dbh = $db;
-    }
-
-    /*
-     *
-     *  Testing basic functionality
-     *
-     */
-    public function test() 
-    {
-        $stmt = $this->dbh->prepare("SELECT first_name FROM users where last_name='Ullman'");
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        print_r($result);
-        print("\n");
-
     }
 
     /**
      * Add prepared statements to be executed
      *
      * @param string sql statements
+     * @return array Collection of all sql statements
      */
     public function prepare($statments) 
     {
         array_push($this->statements, $statements);
+        return $this->statements;
     }
 
     /**
@@ -49,6 +42,8 @@ class Model {
      */
     public function execute($options) 
     {
+        $dbh = null;
+
 
 
         return false;

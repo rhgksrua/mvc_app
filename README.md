@@ -101,11 +101,16 @@ class Home extends Controller
 
 Variables `$hello` and `$foo` is available in the `home.php` template.
 
+***
+#### Using Model class
+A PDO instance is loaded in to `Model.php` as `$db`.  Refer to PHP PDO class for connecting and querying the database. 
+
+[PHP PDO link](http://php.net/manual/en/book.pdo.php)
 
 ## TODO
 
-* Add Model
-
+* Fix bracket locations.
+* Remove test pages.
 
 
 
