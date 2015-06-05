@@ -20,7 +20,7 @@ class Controller {
 
     }
 
-    public function setModelView(View $view, Model $model) {
+    public function loadModelView(View $view, Model $model) {
         $this->view = $view;
         $this->model = $model;
     }

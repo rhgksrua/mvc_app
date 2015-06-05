@@ -47,9 +47,14 @@ class App {
             require_once $path;
             $this->controller = new $this->controllerName();
 
-            // Injecting view and model
-            $this->controller->setModelView($this->view, $this->model);
-            $this->controller->{$this->method}();
+            // Class View and Model is required by user created Controller
+            // class.  loadModelView method makes these classes available.
+            $this->controller->loadModelView($this->view, $this->model);
+            try {
+                $this->controller->{$this->method}();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
             exit();
         } else {
             return $this->view->render($this->page404);
