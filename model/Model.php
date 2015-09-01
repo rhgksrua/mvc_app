@@ -43,9 +43,6 @@ class Model {
     public function execute($options) 
     {
         $dbh = null;
-
-
-
         return false;
     }
 
