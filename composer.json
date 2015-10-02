@@ -1,0 +1,12 @@
+{
+    "name": "rhgksrua/hankmvc",
+    "description": "php framework",
+    "version": "0.0.3",
+    "authors": [
+        {
+            "name": "Han Koh",
+            "email": "rhgksrua@gmail.com"
+        }
+    ],
+    "require": {}
+}
