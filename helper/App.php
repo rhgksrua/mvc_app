@@ -20,6 +20,7 @@ class App {
 
     /**
      * This is where it begins
+     * Initializes required classes.
      *
      * @param $router Router
      * @param $view View
@@ -31,7 +32,7 @@ class App {
         $this->model = $model;
         $this->controllerName= $this->router->getController();
         $this->method = $this->router->getMethod();
-        $path = __DIR__ . "/../controller/" . $this->controllerName. ".php";
+        $path = dirname(__DIR__) . "/controller/" . $this->controllerName . ".php";
         $this->routeToPath($path);
     }
 
@@ -45,7 +46,12 @@ class App {
     private function routeToPath($path) {
         if (file_exists($path)) {
             require_once $path;
-            $this->controller = new $this->controllerName();
+
+            try {
+                $this->controller = new $this->controllerName();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
 
             // Class View and Model is required by user created Controller
             // class.  loadModelView method makes these classes available.

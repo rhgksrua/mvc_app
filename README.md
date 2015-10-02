@@ -22,6 +22,7 @@ Example of `Home.php`
 ```php
 <?php
 
+// Your controllers must extend Controller
 class Home extends Controller
 {
     public function index()
@@ -101,17 +102,18 @@ class Home extends Controller
 
 Variables `$hello` and `$foo` is available in the `home.php` template.
 
-***
+**
 #### Using Model class
 A PDO instance is loaded in to `Model.php` as `$db`.  Refer to PHP PDO class for connecting and querying the database. 
 
+In your controller, an instance of PDO is available as `$this->model`.
+
 [PHP PDO link](http://php.net/manual/en/book.pdo.php)
+
+#### Config file
+
+Configuration file is in `/helper/config.php`.  Curerntly stores username and password for MySql.
 
 ## TODO
 
-* Fix bracket locations.
-* Remove test pages.
-
-
-
-
+* Refactor app and router

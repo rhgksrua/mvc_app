@@ -1,10 +1,8 @@
 <?php
 
-/*
- *
+/**
  * Debug function
  * displays values
- *
  */
 function zzz($comment = " ", $value) {
     if (DEBUG == TRUE) {

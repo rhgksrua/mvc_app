@@ -2,7 +2,7 @@
 
 require '../helper/bootstrap.php';
 
-define('DEBUG', FALSE);
+define('DEBUG', TRUE);
 
 $router = new Router;
 $view = new View;

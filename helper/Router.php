@@ -1,9 +1,7 @@
 <?php
 
 /**
- *
  * Pretty URLs
- *
  */
 class Router {
 
@@ -21,6 +19,13 @@ class Router {
 
     // Parses URI and sets page
     public function __construct() {
+        $this->parseUri();
+    }
+
+    /**
+     * Tries to match uri from routes.php
+     */
+    private function parseUri() {
 
         require "routes.php";
 
@@ -54,7 +59,6 @@ class Router {
                 $this->set_method();
             }
         }
-
     }
 
     // Controller Setter
