@@ -5,6 +5,8 @@
  *
  * Create a method and call method from controller.
  * 
+ * NOTE: Currently, Model.php only serves as a container for PDO.
+ *       None of the methods are implemented.
  */
 class Model {
 
@@ -49,4 +51,4 @@ class Model {
 }
 
 
-// END
+// EOF
