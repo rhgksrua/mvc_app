@@ -1,5 +1,7 @@
 <?php
 
+namespace Hankmvc\Helper;
+
 /**
  * Pretty URLs
  */

@@ -1,5 +1,10 @@
 <?php
 
+namespace Hankmvc\Controller;
+
+use \Hankmvc\view\View as View;
+use \Hankmvc\model\Model as Model;
+
 //require '../view/View.php';
 
 class Controller 

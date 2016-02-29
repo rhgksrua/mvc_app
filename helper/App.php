@@ -1,6 +1,13 @@
 <?php
 
-require_once "../view/View.php";
+namespace Hankmvc\Helper;
+
+use \Hankmvc\view\View as View;
+use \Hankmvc\model\Model as Model;
+use \Hankmvc\helper\Router as Router;
+use \Hankmvc\controller\Controller as Controller;
+
+//require_once "../view/View.php";
 
 class App {
     private $page404 = '404';
@@ -30,7 +37,7 @@ class App {
         $this->router = $router;
         $this->view = $view;
         $this->model = $model;
-        $this->controllerName= $this->router->getController();
+        $this->controllerName = $this->router->getController();
         $this->method = $this->router->getMethod();
         $path = dirname(__DIR__) . "/controller/" . $this->controllerName . ".php";
         $this->routeToPath($path);

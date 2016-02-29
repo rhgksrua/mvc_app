@@ -1,5 +1,7 @@
 <?php
 
+namespace Hankmvc\View;
+
 /**
  * handles all template related operations
  *

@@ -37,6 +37,8 @@ class Home extends Controller
 
 ##### Set your routes in `helper/routes.php`
 
+** routes in `routes.php` must have a controller attached.  routes without a controller will results in a PHP Fatal error.
+
 *Only GET and POST methods are implemented*
 
 ex.
@@ -45,12 +47,12 @@ ex.
 $this->get('/home', 'Home');
 ```
 `Home.php` is where all the logic will reside. `.php` extension is not required.
-Function `index` is the default method that will be run.
+`index` is the default method invokes if none given.
 Your own method can be set by
 ```php
 $this->get('/home', 'Home@show');
 ```
-Home needs a `show` method
+Home needs a `show` method.
 
 ex.
 ```php
