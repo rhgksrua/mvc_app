@@ -10,9 +10,11 @@ _This is a work in progress_
 
 There are no dependencies.
 
-run `git clone https://github.com/rhgksrua/mvc_app.git`
+run `git clone https://github.com/rhgksrua/mvc_app.git`.
 
-`RewriteEngine On` and `AllowOverride all` might be required in vhost settings for proper routing.
+run `composer install`. Although there are no dependencies, createing `vendor/autoload.php` allows adding dependencies throught Composer.
+
+`RewriteEngine On` and `AllowOverride all` might be required in vhost settings for proper routing (for `.htaccess`).
 
 #### Creating a basic website
 ---
