@@ -50,5 +50,6 @@ spl_autoload_register(function ($class) {
 
 require "../helper/debug.php";
 require "../helper/config.php";
+require __DIR__ . "/vendor/autoload.php";
 
 
