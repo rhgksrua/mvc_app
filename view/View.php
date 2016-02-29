@@ -27,6 +27,8 @@ class View {
         if (file_exists($path)) {
             extract($data);
             require($path);
+        } else {
+            throw new Exception("View template not found");
         }
     }
 }

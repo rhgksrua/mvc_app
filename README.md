@@ -12,6 +12,8 @@ There are no dependencies.
 
 run `git clone https://github.com/rhgksrua/mvc_app.git`
 
+`RewriteEngine On` and `AllowOverride all` might be required in vhost settings for proper routing.
+
 #### Creating a basic website
 ---
 

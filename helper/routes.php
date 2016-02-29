@@ -7,5 +7,6 @@
  * The last URI overwrites any previously set URIs
  */
 $this->get('/', 'HomeController@index');
+$this->get('/test', 'HomeController@test');
 
 // EOF

@@ -4,7 +4,6 @@ Options -MultiViews
 
 RewriteEngine On
 
-
 # Remove trailing slash
 # RewriteRule ^(.*)/$ http://mvc/$1 [L,R=301]
 
