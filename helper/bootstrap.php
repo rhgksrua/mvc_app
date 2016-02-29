@@ -8,20 +8,11 @@
  *
  */
 
-// autoload classes
 
 /**
- * An example of a project-specific implementation.
- * 
- * After registering this autoload function with SPL, the following line
- * would cause the function to attempt to load the \Foo\Bar\Baz\Qux class
- * from /path/to/project/src/Baz/Qux.php:
- *
- *  new \Foo\Bar\Baz\Qux;
  *
  * spl_autoload_register function taken from
  * https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader-examples.md
- * 
  *      
  * @param string $class The fully-qualified class name.
  * @return void
@@ -33,7 +24,6 @@ spl_autoload_register(function ($class) {
 
     // base directory for the namespace prefix
     $base_dir = dirname(__DIR__);
-    //echo $base_dir . "\n";
 
     // does the class use the namespace prefix?
     $len = strlen($prefix);
@@ -58,11 +48,7 @@ spl_autoload_register(function ($class) {
     }
 });
 
-//require "../Controller/Controller.php";
 require "../helper/debug.php";
-//require "../helper/App.php";
-//require "../helper/Router.php";
 require "../helper/config.php";
-//require '../Model/Model.php';
 
 

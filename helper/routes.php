@@ -8,5 +8,6 @@
  */
 $this->get('/', 'HomeController@index');
 $this->get('/test', 'HomeController@test');
+$this->get('/foo', 'HomeController@foo');
 
 // EOF

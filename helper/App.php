@@ -7,8 +7,6 @@ use \Hankmvc\model\Model as Model;
 use \Hankmvc\helper\Router as Router;
 use \Hankmvc\controller\Controller as Controller;
 
-//require_once "../view/View.php";
-
 class App {
     private $page404 = '404';
     
@@ -48,14 +46,16 @@ class App {
      * 
      * @param $path string Path to controller directory
      *
-     * NOTE: need to rework how controller is being created
+     * NOTE: Need to decide how 404 gets called.
+     * It used to be that if controller file did not exist, users were redirected to 404.
+     * Might need to redirect if uri does not exist in routes.php
      */
     private function routeToPath($path) {
         if (file_exists($path)) {
-            require_once $path;
+            $controllerName = CONTROLLER_NS . $this->controllerName;
 
             try {
-                $this->controller = new $this->controllerName();
+                $this->controller = new $controllerName();
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
