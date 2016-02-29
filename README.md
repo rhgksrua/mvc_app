@@ -24,6 +24,11 @@ Example of `Home.php`
 ```php
 <?php
 
+// namespace is required
+namespace Hankmvc\controller;
+
+use \Hankmvc\controller\Controller as Controller;
+
 // Your controllers must extend Controller
 class Home extends Controller
 {

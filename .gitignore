@@ -3,3 +3,4 @@ access.log
 error.log
 rewrite.log
 vendor
+*.swp
