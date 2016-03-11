@@ -11,7 +11,7 @@ class Router {
     private $controller = null;
     private $uris = null;
     private $method = null;
-    private $method_types = array('get', 'post');
+    private $methodTypes = array('get', 'post');
 
     // Will contain uri without script name
     private $requestURI = null;
@@ -46,31 +46,36 @@ class Router {
         // URI string. ex: /home/hangman
         $imploded = '/' . implode('/', $this->requestURI);
 
-        $request_method = strtolower($_SERVER['REQUEST_METHOD']);
+        $requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
         
 
-        if (array_key_exists($request_method, $this->sites) && 
-            array_key_exists($imploded, $this->sites[$request_method])) {
+        if (array_key_exists($requestMethod, $this->sites) && 
+            array_key_exists($imploded, $this->sites[$requestMethod])) {
 
-            $cont = $this->sites[$request_method][$imploded];
+            $cont = $this->sites[$requestMethod][$imploded];
             $cont = explode('@', $cont);
 
-            $this->set_controller($cont[0]);
+            $this->setController($cont[0]);
             if (isset($cont[1]) && !empty($cont[1])) {
-                $this->set_method($cont[1]);
+                $this->setMethod($cont[1]);
             } else {
-                $this->set_method();
+                $this->setMethod();
             }
         }
     }
 
-    // Controller Setter
-    private function set_controller($cont) {
-        $this->controller = $cont;
+    /**
+     * sets controller for a route
+     *
+     * @param string $controller
+     *
+     * @return string
+     */
+    private function setController($controller) {
+        $this->controller = $controller;
     }
 
-    // Method Setter
-    private function set_method($method = 'index') {
+    private function setMethod($method = 'index') {
         $this->method = $method;
     }
 
@@ -84,8 +89,13 @@ class Router {
         return $this->method;
     }
 
+    /**
+     * Magic method
+     *
+     *
+     */
     public function __call($method, $arg) {
-        if (in_array($method, $this->method_types)) {
+        if (in_array($method, $this->methodTypes)) {
             $this->sites[$method][$arg[0]] = $arg[1];
         } else {
             throw new Exception("request method ( $method ) in routes.php invalid");
@@ -93,8 +103,7 @@ class Router {
         }
     }
 
-    public function showURL() {
+    public function getURL() {
         return $this->sites;
     }
-
 }
