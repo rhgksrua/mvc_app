@@ -4,3 +4,5 @@ error.log
 rewrite.log
 vendor
 *.swp
+.env.php
+.env

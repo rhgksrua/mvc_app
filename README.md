@@ -21,15 +21,15 @@ run `composer install`. Although there are no dependencies, createing `vendor/au
 
 ##### Create a new file in `/controller` directory
 
-i.e. `/controller/Home.php`
+i.e. `/App/Controller/Home.php`
 Example of `Home.php`
 ```php
 <?php
 
 // namespace is required
-namespace Hankmvc\controller;
+namespace Hankmvc\Controller;
 
-use \Hankmvc\controller\Controller as Controller;
+use \Hankmvc\App\Controller\Controller as Controller;
 
 // Your controllers must extend Controller
 class Home extends Controller
@@ -42,7 +42,7 @@ class Home extends Controller
 ```
 ***
 
-##### Set your routes in `helper/routes.php`
+##### Set your routes in `App/routes.php`
 
 ** routes in `routes.php` must have a controller attached.  routes without a controller will results in a PHP Fatal error.
 
@@ -53,13 +53,13 @@ ex.
 ```php
 $this->get('/home', 'Home');
 ```
-`Home.php` is where all the logic will reside. `.php` extension is not required.
-`index` is the default method invokes if none given.
+`Home.php` is the controller. `.php` extension is not required.
+`index` is the default method that invokes if none given.
 Your own method can be set by
 ```php
 $this->get('/home', 'Home@show');
 ```
-Home needs a `show` method.
+`show` method is required in Home controller.
 
 ex.
 ```php
@@ -76,11 +76,11 @@ class Home extends Controller
 ***
 ##### Next, a template needs to be created.
 
-Add a new file to `/view/templates`
+Add a new file to `App/View/templates`
 
 i.e.
 
-`/view/tempaltes/home.php`
+`App/View/tempaltes/home.php`
 
 ***
 ##### Inside `Home` controller, template needs to be rendered.
@@ -111,20 +111,23 @@ class Home extends Controller
 }
 ```
 
-Variables `$hello` and `$foo` is available in the `home.php` template.
+Variables `$hello` and `$foo` are available in the `home.php` template.
 
 **
 #### Using Model class
 A PDO instance is loaded in to `Model.php` as `$db`.  Refer to PHP PDO class for connecting and querying the database. 
 
-In your controller, an instance of PDO is available as `$this->model`.
+Database configuration can be set in `App/config/config.php` or `.env.php`.
+
+`.env.php` holds sensitive data, such as passwords.
+
+In your model, an instance of PDO is available as `$this->dbh`.
 
 [PHP PDO link](http://php.net/manual/en/book.pdo.php)
 
 #### Config file
 
-Configuration file is in `/helper/config.php`.  Curerntly stores username and password for MySql.
+Configuration file is in `/App/config/config.php`.  Curerntly stores username and password for MySql.
 
 ## TODO
 
-* Refactor app and router

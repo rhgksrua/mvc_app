@@ -65,6 +65,8 @@ class App {
 
             // Class View and Model is required by user created Controller
             // class.  loadModelView method makes these classes available.
+            //
+            // Need a way to load model only when used.
             $this->controller->loadModelView($this->view, $this->model);
             try {
                 $this->controller->{$this->method}();

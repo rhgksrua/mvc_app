@@ -14,11 +14,18 @@ if (file_exists(ROOT . 'vendor/autoload.php')) {
     require ROOT . 'vendor/autoload.php';
 }
 
+// Checks for .env file.
+// .env file should be included in .gitignore.
+// All sensitive data should go here. i.e. passwords.
+if (file_exists(ROOT .  '.env.php')) {
+    require ROOT . '.env.php';
+}
+
 $router = new \Hankmvc\App\Core\Router();
 $view = new \Hankmvc\App\View\View();
 //
 //// DB init
-$dsn = DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME;
+$dsn = DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';port=' . DB_PORT;
 $dbh = new PDO($dsn, DB_USER, DB_PASS);
 $model = new \Hankmvc\App\Model\Model($dbh);
 

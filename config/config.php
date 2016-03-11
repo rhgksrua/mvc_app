@@ -8,10 +8,9 @@
 
 // DB
 define('DB_TYPE', 'mysql');
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'sitename');
-define('DB_USER', 'user');
-define('DB_PASS', 'password');
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'c9');
+define('DB_PORT', '3306');
 
 // controller namespace
 define('CONTROLLER_NS', "\\Hankmvc\\App\\Controller\\");
