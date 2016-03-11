@@ -1,6 +1,6 @@
 <?php
 
-namespace Hankmvc\Helper;
+namespace Hankmvc\App\Core;
 
 /**
  * Pretty URLs
@@ -29,7 +29,8 @@ class Router {
      */
     private function parseUri() {
 
-        require "routes.php";
+        // get all the routes
+        require APP . 'routes.php';
 
         // parse request uri
         $no_query = strtok($_SERVER['REQUEST_URI'], "?");

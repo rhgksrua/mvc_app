@@ -1,6 +1,6 @@
 <?php
 
-namespace Hankmvc\Model;
+namespace Hankmvc\App\Model;
 
 /**
  * Connects to db.

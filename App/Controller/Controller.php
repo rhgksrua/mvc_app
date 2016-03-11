@@ -1,9 +1,9 @@
 <?php
 
-namespace Hankmvc\Controller;
+namespace Hankmvc\App\Controller;
 
-use \Hankmvc\view\View as View;
-use \Hankmvc\model\Model as Model;
+use \Hankmvc\App\View\View as View;
+use \Hankmvc\App\Model\Model as Model;
 
 class Controller 
 {

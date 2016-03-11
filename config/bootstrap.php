@@ -4,10 +4,10 @@
  *
  * bootstrap.php
  *
- * This runs before anything happens
+ * This runs before anything happens.
+ * Add anything that needs to run before starting app.
  *
  */
-
 
 /**
  *
@@ -24,6 +24,7 @@ spl_autoload_register(function ($class) {
 
     // base directory for the namespace prefix
     $base_dir = dirname(__DIR__);
+    //var_dump($base_dir);
 
     // does the class use the namespace prefix?
     $len = strlen($prefix);
@@ -40,16 +41,17 @@ spl_autoload_register(function ($class) {
     // separators with directory separators in the relative class name, append
     // with .php
     $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
-    //echo $file;
+  //  var_dump($file);
 
     // if the file exists, require it
     if (file_exists($file)) {
         require $file;
+ //       var_dump('file exists');
+    } else {
+//        var_dump('file does not exists');
     }
 });
 
-require "../helper/debug.php";
-require "../helper/config.php";
-require dirname(__DIR__) . "/vendor/autoload.php";
+
 
 

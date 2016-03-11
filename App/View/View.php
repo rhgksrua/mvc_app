@@ -1,6 +1,6 @@
 <?php
 
-namespace Hankmvc\View;
+namespace Hankmvc\App\View;
 
 /**
  * handles all template related operations
@@ -11,7 +11,7 @@ namespace Hankmvc\View;
  */
 class View {
 
-    public function __construct($templateDir = '/view/template/') {
+    public function __construct($templateDir = TEMPLATE) {
         $this->templateDir = $templateDir;
     }
 
@@ -26,11 +26,12 @@ class View {
     public function render($template, $data = array()) {
 
         $path = dirname(__DIR__) . $this->templateDir . $template . '.php';
+        $path = $this->templateDir . $template . '.php';
         if (file_exists($path)) {
             extract($data);
             require($path);
         } else {
-            throw new Exception("View template not found");
+            throw new \Exception("View template not found");
         }
     }
 }

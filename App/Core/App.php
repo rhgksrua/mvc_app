@@ -1,11 +1,11 @@
 <?php
 
-namespace Hankmvc\Helper;
+namespace Hankmvc\App\Core;
 
-use \Hankmvc\view\View as View;
-use \Hankmvc\model\Model as Model;
-use \Hankmvc\helper\Router as Router;
-use \Hankmvc\controller\Controller as Controller;
+use \Hankmvc\App\View\View as View;
+use \Hankmvc\App\Model\Model as Model;
+use \Hankmvc\App\Core\Router as Router;
+use \Hankmvc\App\Controller\Controller as Controller;
 
 class App {
     private $page404 = '404';
@@ -37,7 +37,7 @@ class App {
         $this->model = $model;
         $this->controllerName = $this->router->getController();
         $this->method = $this->router->getMethod();
-        $path = dirname(__DIR__) . "/controller/" . $this->controllerName . ".php";
+        $path = dirname(__DIR__) . "/Controller/" . $this->controllerName . ".php";
         $this->routeToPath($path);
     }
 
@@ -51,8 +51,11 @@ class App {
      * Might need to redirect if uri does not exist in routes.php
      */
     private function routeToPath($path) {
+        //echo $path;
         if (file_exists($path)) {
             $controllerName = CONTROLLER_NS . $this->controllerName;
+
+            //var_dump($controllerName);
 
             try {
                 $this->controller = new $controllerName();

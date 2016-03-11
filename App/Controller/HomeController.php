@@ -1,8 +1,8 @@
 <?php
 
-namespace Hankmvc\controller;
+namespace Hankmvc\App\Controller;
 
-use \Hankmvc\controller\Controller as Controller;
+use \Hankmvc\App\Controller\Controller as Controller;
 
 class HomeController extends Controller {
     public function index($page = 'home') {
