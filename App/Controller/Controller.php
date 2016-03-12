@@ -5,6 +5,12 @@ namespace Hankmvc\App\Controller;
 use \Hankmvc\App\View\View as View;
 use \Hankmvc\App\Model\Model as Model;
 
+
+/**
+ *
+ * Controller class
+ *
+ */
 class Controller 
 {
 
@@ -16,8 +22,7 @@ class Controller
     public $view = null;
 
     /**
-     * Base controller
-     * 
+     * constructor
      */
     public function __construct() 
     {
@@ -25,10 +30,12 @@ class Controller
     }
 
     /**
-     * Gets View and Model from App
+     * Set Model and View
      *
      * @param View $view
      * @param Model $model
+     *
+     * @return void
      */
     public function loadModelView(View $view, Model $model) 
     {

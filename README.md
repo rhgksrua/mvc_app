@@ -80,7 +80,7 @@ Add a new file to `App/View/templates`
 
 i.e.
 
-`App/View/tempaltes/home.php`
+`App/View/templates/home.php`
 
 ***
 ##### Inside `Home` controller, template needs to be rendered.
@@ -117,9 +117,7 @@ Variables `$hello` and `$foo` are available in the `home.php` template.
 #### Using Model class
 A PDO instance is loaded in to `Model.php` as `$db`.  Refer to PHP PDO class for connecting and querying the database. 
 
-Database configuration can be set in `App/config/config.php` or `.env.php`.
-
-`.env.php` holds sensitive data, such as passwords.
+Database configuration can be set in `App/config/config.php`.
 
 In your model, an instance of PDO is available as `$this->dbh`.
 
@@ -127,7 +125,7 @@ In your model, an instance of PDO is available as `$this->dbh`.
 
 #### Config file
 
-Configuration file is in `/App/config/config.php`.  Curerntly stores username and password for MySql.
+Configuration file is in `config/config.php`.  Curerntly stores username and password for MySql.
 
 ## TODO
 

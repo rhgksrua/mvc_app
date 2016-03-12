@@ -4,6 +4,8 @@ namespace Hankmvc\App\Core;
 
 /**
  * Pretty URLs
+ * 
+ * Router class parses controller and method for each routes provided from routes.php
  */
 class Router {
 
@@ -25,7 +27,11 @@ class Router {
     }
 
     /**
-     * Tries to match uri from routes.php
+     * parseUri sets controller and method based on routes.php.
+     *
+     * @param
+     *
+     * @return void
      */
     private function parseUri() {
 
@@ -33,8 +39,8 @@ class Router {
         require APP . 'routes.php';
 
         // parse request uri
-        $no_query = strtok($_SERVER['REQUEST_URI'], "?");
-        $this->requestURI = explode('/', $no_query);
+        $noQuery = strtok($_SERVER['REQUEST_URI'], "?");
+        $this->requestURI = explode('/', $noQuery);
         $this->scriptName = explode('/', $_SERVER['SCRIPT_NAME']);
         for ($i = 0; $i < sizeof($this->scriptName); $i++) {
             if ($this->requestURI[$i] == $this->scriptName[$i]) {
@@ -65,34 +71,56 @@ class Router {
     }
 
     /**
-     * sets controller for a route
+     * sets controller called from routes.php
      *
      * @param string $controller
      *
-     * @return string
+     * @return void
      */
     private function setController($controller) {
         $this->controller = $controller;
     }
 
+    /**
+     * set method called from routes.php
+     *
+     * @param string $method
+     *
+     * @return void
+     */
     private function setMethod($method = 'index') {
         $this->method = $method;
     }
 
-    // Controller Getter
+    /**
+     * get controller name
+     *
+     * @param
+     *
+     * @return string $this->controller
+     */
     public function getController() {
         return $this->controller;
     }
 
-    // Method Setter
+    /**
+     * Get method name. Default name is 'index'
+     *
+     * @param
+     *
+     * @return string $this->method
+     */
     public function getMethod() {
         return $this->method;
     }
 
     /**
-     * Magic method
+     * Magic method. Determines request method.
      *
+     * @param string $method
+     * @param array $arg
      *
+     * @return void
      */
     public function __call($method, $arg) {
         if (in_array($method, $this->methodTypes)) {
@@ -103,6 +131,13 @@ class Router {
         }
     }
 
+    /**
+     * Returns current URL
+     *
+     * @param
+     *
+     * @return void
+     */
     public function getURL() {
         return $this->sites;
     }

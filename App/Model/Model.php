@@ -29,7 +29,8 @@ class Model {
     /**
      * Add prepared statements to be executed
      *
-     * @param string sql statements
+     * @param string $statements sql statements
+     *
      * @return array Collection of all sql statements
      */
     public function prepare($statments) 
@@ -42,6 +43,7 @@ class Model {
      * Executes statements
      *
      * @param array $options options
+     *
      * @return query
      */
     public function execute($options) 

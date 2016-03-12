@@ -11,6 +11,9 @@ namespace Hankmvc\App\View;
  */
 class View {
 
+    /**
+     * sets template directory
+     */
     public function __construct($templateDir = TEMPLATE) {
         $this->templateDir = $templateDir;
     }
@@ -22,6 +25,8 @@ class View {
      *
      * @param string $template - name of the template
      * @param array $data - any varialbes required by the tempalate
+     *
+     * @return void
      */
     public function render($template, $data = array()) {
 

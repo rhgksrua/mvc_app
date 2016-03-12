@@ -25,7 +25,7 @@ $router = new \Hankmvc\App\Core\Router();
 $view = new \Hankmvc\App\View\View();
 
 // DB init
-$dsn = DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';port=' . DB_PORT;
+$dsn = DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME;
 $dbh = new PDO($dsn, DB_USER, DB_PASS);
 $model = new \Hankmvc\App\Model\Model($dbh);
 
