@@ -27,6 +27,33 @@ class Router {
     }
 
     /**
+     * Converts request uri in to an array
+     *
+     * @return array
+     */
+    public function getUriArray() {
+        $noQuery = strtok($_SERVER['REQUEST_URI'], "?");
+        return explode('/', $noQuery);
+    }
+
+    /**
+     * Filters empty element from $uri based on $_SERVER['SCRIPT_NAME']
+     *
+     * @param array $uri
+     *
+     * @return array
+     */
+    public function filterEmptyElement($uri) {
+        $this->scriptName = explode('/', $_SERVER['SCRIPT_NAME']);
+        for ($i = 0; $i < sizeof($this->scriptName); $i++) {
+            if ($uri[$i] == $this->scriptName[$i]) {
+                unset($uri[$i]);
+            }
+        }
+        return array_values($uri);
+    }
+
+    /**
      * parseUri sets controller and method based on routes.php.
      *
      * @param
@@ -39,22 +66,32 @@ class Router {
         require APP . 'routes.php';
 
         // parse request uri
-        $noQuery = strtok($_SERVER['REQUEST_URI'], "?");
-        $this->requestURI = explode('/', $noQuery);
-        $this->scriptName = explode('/', $_SERVER['SCRIPT_NAME']);
-        for ($i = 0; $i < sizeof($this->scriptName); $i++) {
-            if ($this->requestURI[$i] == $this->scriptName[$i]) {
-                unset($this->requestURI[$i]);
-            }
-        }
+        $this->requestURI = $this->getUriArray();
+
+        // reset array index
         $this->requestURI = array_values($this->requestURI);
+
+        // requestURI now holds parsed uri in array
+        $this->requestURI = $this->filterEmptyElement($this->requestURI);
 
         // URI string. ex: /home/hangman
         $imploded = '/' . implode('/', $this->requestURI);
 
         $requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
         
+        $this->setControllerMethod($requestMethod, $imploded);
 
+    }
+
+    /**
+     * Sets routes based on routes.php
+     *
+     * @param string $requestMethod Request method specified
+     * @param string $imploded      Requested URI
+     *
+     * @return void
+     */
+    private function setControllerMethod($requestMethod, $imploded) {
         if (array_key_exists($requestMethod, $this->sites) && 
             array_key_exists($imploded, $this->sites[$requestMethod])) {
 
