@@ -9,7 +9,10 @@ namespace Hankmvc\App\Core;
  */
 class Router {
 
+    // $this->sites
+    // [ request_method => [ url => controller@method ] ]
     private $sites = array();
+
     private $controller = null;
     private $uris = null;
     private $method = null;
@@ -84,7 +87,7 @@ class Router {
     }
 
     /**
-     * Sets routes based on routes.php
+     * Sets controller and method.
      *
      * @param string $requestMethod Request method specified
      * @param string $imploded      Requested URI

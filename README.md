@@ -1,18 +1,18 @@
 
 _This is a work in progress_
 
-# MVC in PHP
+# PHP Framework
 
 
-## Basic implementation of MVC for PHP
+## Simple PHP Framework
 
 ### Getting Started
 
 There are no dependencies.
 
-run `git clone https://github.com/rhgksrua/mvc_app.git`.
+Run `git clone https://github.com/rhgksrua/mvc_app.git`.
 
-run `composer install`. Although there are no dependencies, createing `vendor/autoload.php` allows adding dependencies throught Composer.
+(OPTIONAL) Run `composer install`. `vendor/autoload.php` will be included if exists.
 
 `RewriteEngine On` and `AllowOverride all` might be required in vhost settings for proper routing (for `.htaccess`).
 

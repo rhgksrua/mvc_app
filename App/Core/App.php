@@ -11,6 +11,7 @@ use \Hankmvc\App\Controller\Controller as Controller;
  *
  */
 class App {
+
     private $page404 = '404';
     
     // Controller and its method
